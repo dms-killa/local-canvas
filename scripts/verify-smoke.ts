@@ -1,6 +1,6 @@
-import { AppDb } from './src/lib/db/AppDb';
-import { ProjectDb } from './src/lib/db/ProjectDb';
-import { AgentDb } from './src/lib/db/AgentDb';
+import { AppDb } from '../src/lib/db/AppDb';
+import { ProjectDb } from '../src/lib/db/ProjectDb';
+import { AgentDb } from '../src/lib/db/AgentDb';
 
 console.log('Starting verification...');
 

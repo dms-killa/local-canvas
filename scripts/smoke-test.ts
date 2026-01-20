@@ -31,15 +31,16 @@ console.log('✔ File version saved:', versionId);
 // --- AgentDb ---
 const agentDb = new AgentDb(PROJECT_ROOT);
 
+// Make task ID unique
+const taskId = `task-smoke-${Date.now()}`;
 agentDb.enqueueTask(
-  'task-smoke-1',
+  taskId,
   PROJECT_ID,
   versionId,
   'summarize'
 );
 
-
-console.log('✔ Agent task enqueued');
+console.log('✔ Agent task enqueued:', taskId);
 
 // --- Done ---
 console.log('🎉 Smoke test completed successfully');

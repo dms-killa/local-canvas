@@ -47,6 +47,22 @@ export class AgentDb {
     return this.db.prepare(`SELECT * FROM agent_tasks WHERE id = ?`).get(task.id) as AgentTask;
   }
 
+  enqueueTask(
+    taskId: string,
+    projectId: string,
+    versionId: number,
+    agentType: string,
+    priority: number = 0
+  ) {
+    return this.db.prepare(`
+      INSERT INTO agent_tasks
+        (id, project_id, file_version_id, agent_type, priority, status, created_at)
+      VALUES
+        (?, ?, ?, ?, ?, 'pending', strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+    `).run(taskId, projectId, versionId, agentType, priority);
+  }
+
+
   getPendingCount(): number {
     // Cast the return of .get() to access the 'count' property
     const result = this.db.prepare(`
@@ -56,6 +72,19 @@ export class AgentDb {
     `).get() as { count: number };
     
     return result.count;
+  }
+
+  /**
+   * Retrieves all currently pending tasks.
+   * Useful for monitoring queue depth and smoke testing.
+   */
+  getPendingTasks(): AgentTask[] {
+    return this.db.prepare(`
+      SELECT *
+      FROM agent_tasks
+      WHERE status = 'pending'
+      ORDER BY priority DESC, created_at ASC
+    `).all() as AgentTask[];
   }
 
   getTasksByStatus(status: 'pending' | 'running' | 'completed' | 'failed'): AgentTask[] {

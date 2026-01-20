@@ -1,5 +1,5 @@
-import { AgentDb, AgentTask } from '../../db/AgentDb';
-import { ProjectDb } from '../../db/ProjectDb';
+import { AgentDb, AgentTask } from '../db/AgentDb';
+import { ProjectDb } from '../db/ProjectDb';
 
 export class AgentCoordinator {
   constructor(

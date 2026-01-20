@@ -11,7 +11,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "smoke": "tsx scripts/smoke-test.ts",
+    "agent:process": "tsx scripts/agent-process-once.ts",
+    "agent:setup": "tsx scripts/setup-agent-test.ts",
+    "agent:diagnose": "tsx scripts/diagnose-full.ts",
+    "validate": "tsx scripts/verify-smoke.ts",
+    "db:init": "tsx scripts/init-databases.ts"
   },
   "repository": {
     "type": "git",
@@ -32,7 +38,7 @@
     "@vitejs/plugin-react": "^5.1.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"
   },

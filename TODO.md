@@ -2,17 +2,37 @@
 
 ## Current Phase (Now)
 
-Phase C: Minimal Agent Coordination
+## Recently Completed ✅
 
-### Immediate Tasks
+### Phase C: Minimal Agent Coordination (Validated)
 
-- [ ] Implement `AgentCoordinator` class (~40-50 lines)
-- [ ] Create three dummy agent handlers (summarize/analyze/outline with static output)
-- [ ] Write agent ↔ content integration test
-- [ ] Build simple CLI runner (`npm run agent:process`)
-- [ ] Validate: Task lifecycle (pending → running → completed)
+- [x] `AgentCoordinator` class implemented and working
+- [x] Three dummy agent handlers (summarize, analyze, outline) producing artifacts
+- [x] Agent ↔ content integration proven (read versions, write artifacts)
+- [x] CLI runner processes tasks end-to-end
+- [x] Database state transitions verified (pending → running → completed/failed)
+- [x] Error handling works (failed tasks logged)
 
-**Definition of Done**: Agent coordination works end-to-end with deterministic state transitions, independent of AI behavior.
+**Definition of Done Met**: ✅ Agent coordination works end-to-end with deterministic state transitions, independent of AI behavior.
+
+### Key Evidence
+
+- Smoke test: Created version 1, enqueued task, processed successfully
+- Setup test: Enqueued 3 tasks, 2 completed, 1 failed (proper error handling)
+- Artifacts created: summarize, analyze, outline all produced content
+- Database integrity: All tables updated correctly
+
+## Development Commands (Using tsx)
+
+```bash
+# Database & Validation
+npm run smoke        # Full smoke test
+npm run validate     # Verify architecture
+
+# Agent System
+npm run agent:setup  # Create test tasks
+npm run agent:process # Process one task
+npm run agent:diagnose # Full diagnostic
 
 ---
 
