@@ -1,0 +1,39 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { LexicalComposer } from '@lexical/react/LexicalComposer';
+import { ContentEditable } from '@lexical/react/LexicalContentEditable';
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
+import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin';
+
+const editorConfig = {
+  namespace: 'OfflineAIWriter',
+  theme: {
+    // Add minimal theme here if needed
+  },
+  onError: (error: Error) => {
+    console.error('Lexical error:', error);
+  },
+};
+
+const App = () => {
+  return (
+    <LexicalComposer initialConfig={editorConfig}>
+      <div className="editor-container">
+        <RichTextPlugin
+          contentEditable={<ContentEditable className="content-editable" />}
+          placeholder={<div className="placeholder">Start writing...</div>}
+          ErrorBoundary={LexicalErrorBoundary}
+        />
+        <HistoryPlugin />
+        <CharacterLimitPlugin maxLength={5000} />
+      </div>
+    </LexicalComposer>
+  );
+};
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(<App />);

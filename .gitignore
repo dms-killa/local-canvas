@@ -1,1 +1,58 @@
+# Dependency directories
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build directories
+dist/
+build/
+.out/
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# Database files (these are generated at runtime)
+data/
+*.db
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local configuration
+config/local.json
+config/settings.json
+
+# Cache
+.cache/
+.next/
+.nuxt/
+
+# TypeScript output
+*.js
+*.js.map
+*.d.ts
+
+# Node.js
+.nyc_output/
+coverage/
+.nyc_output/
+
+# Ollama (if you're using it)
+ollama.log
