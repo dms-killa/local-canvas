@@ -1,5 +1,14 @@
 import Database, { Database as SQLiteDatabase } from 'better-sqlite3';
 
+export interface FileVersion {
+  id: number;
+  file_id: number;
+  version_number: number;
+  content: string;
+  save_type: 'manual' | 'autosave';
+  created_at: string;
+}
+
 export class ProjectDb {
   private db: SQLiteDatabase;
 
@@ -52,4 +61,33 @@ export class ProjectDb {
       VALUES (?, ?, ?, ?)
     `).run(versionId, type, content, sha);
   }
+
+  getLatestVersion(filePath: string) {
+  return this.db.prepare(`
+    SELECT fv.*
+    FROM file_versions fv
+    JOIN files f ON f.id = fv.file_id
+    WHERE f.path = ?
+    ORDER BY fv.version_number DESC
+    LIMIT 1
+  `).get(filePath);
+  }
+
+  getArtifactsForVersion(versionId: number) {
+    return this.db.prepare(`
+      SELECT *
+      FROM version_artifacts
+      WHERE file_version_id = ?
+      ORDER BY created_at ASC
+    `).all(versionId);
+  }
+
+  getVersionById(versionId: number): FileVersion | undefined {
+    return this.db.prepare(`
+      SELECT *
+      FROM file_versions
+      WHERE id = ?
+    `).get(versionId) as FileVersion | undefined;
+  }
+
 }
