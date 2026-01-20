@@ -36,16 +36,23 @@ npm run agent:diagnose # Full diagnostic
 
 ---
 
-## Next Phase (Upcoming)
+## Current Phase (Now)
+**Phase D: Task Coordination & Status Monitoring (Network-Aware)**
 
-Phase D: Configuration & Resource Management
+### Goals
+- Ollama host/port to `.env` configuration (see `.env.example`)
+- Replace dummy agents with real Ollama integration
+- Add network health monitoring for remote Ollama host
+- Implement task timeout and retry logic
+- Create basic status dashboard in UI
+- Add basic logging configuration
+- Create config validation (ensures settings respect invariants)
 
-### Priority Tasks
-
-- [ ] Move Ollama host/port to `.env` configuration (see `.env.example`)
-- [ ] Implement resource limits from environment (RAM %, concurrency)
-- [ ] Add basic logging configuration
-- [ ] Create config validation (ensures settings respect invariants)
+### Key Decisions
+- Shelving local resource management (Ollama is on separate LAN host)
+- Focus on network-aware task coordination instead
+- Maintain all architectural invariants
+- Keep system working when Ollama host is unavailable
 
 ---
 
