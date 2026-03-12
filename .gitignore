@@ -53,7 +53,6 @@ config/settings.json
 # Node.js
 .nyc_output/
 coverage/
-.nyc_output/
 
 # Ollama (if you're using it)
 ollama.log

@@ -1,18 +1,14 @@
 {
   "name": "local-canvas",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
-  },
+  "version": "0.1.0",
+  "description": "Local canvas utilities",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
     "smoke": "tsx scripts/smoke-test.ts",
     "agent:process": "tsx scripts/agent-process-once.ts",
     "agent:setup": "tsx scripts/setup-agent-test.ts",
@@ -42,9 +38,11 @@
   "homepage": "https://github.com/dms-killa/local-canvas#readme",
   "devDependencies": {
     "@types/jest": "^30.0.0",
+    "@types/node": "^20.14.0",
     "better-sqlite3": "^12.6.2",
     "jest": "^30.2.0",
     "jest-fetch-mock": "^3.0.3",
-    "ts-jest": "^29.4.6"
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.4.5"
   }
 }
