@@ -11,13 +11,22 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
     "smoke": "tsx scripts/smoke-test.ts",
     "agent:process": "tsx scripts/agent-process-once.ts",
     "agent:setup": "tsx scripts/setup-agent-test.ts",
     "agent:diagnose": "tsx scripts/diagnose-full.ts",
     "validate": "tsx scripts/verify-smoke.ts",
-    "db:init": "tsx scripts/init-databases.ts"
+    "db:init": "tsx scripts/init-databases.ts",
+    "migrate:phase-d": "tsx scripts/migrate-phase-d.ts",
+    "db:health": "tsx scripts/db-health.ts",
+    "health:check": "tsx scripts/check-health.ts",
+    "config:validate": "tsx scripts/validate-config.ts",
+    "test:evaluation": "node --env-file=.env --env-file-if-exists=.env.local node_modules/.bin/tsx scripts/test-evaluation.ts",
+    "test:dotenv": "node --env-file=.env --env-file-if-exists=.env.local node_modules/.bin/tsx scripts/test-dotenv.ts",
+    "test:health": "node --env-file=.env --env-file-if-exists=.env.local node_modules/.bin/tsx scripts/check-health.ts",
+    "start": "tsx src/bin/cli.ts"
   },
   "repository": {
     "type": "git",
@@ -32,26 +41,10 @@
   },
   "homepage": "https://github.com/dms-killa/local-canvas#readme",
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
-    "@types/node": "^25.0.9",
-    "@types/react": "^19.2.8",
-    "@vitejs/plugin-react": "^5.1.2",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.1"
-  },
-  "dependencies": {
-    "@lexical/code": "^0.39.0",
-    "@lexical/history": "^0.39.0",
-    "@lexical/link": "^0.39.0",
-    "@lexical/list": "^0.39.0",
-    "@lexical/react": "^0.39.0",
-    "@lexical/rich-text": "^0.39.0",
-    "@lexical/table": "^0.39.0",
-    "@lexical/utils": "^0.39.0",
+    "@types/jest": "^30.0.0",
     "better-sqlite3": "^12.6.2",
-    "lexical": "^0.39.0"
+    "jest": "^30.2.0",
+    "jest-fetch-mock": "^3.0.3",
+    "ts-jest": "^29.4.6"
   }
 }

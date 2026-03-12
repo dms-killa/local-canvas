@@ -90,6 +90,10 @@ const task = await coordinator.executeTask({
 
 ---
 
+## Agent Output Standardization
+
+All content-aware agents (summarize, analyze, evaluate) adhere to the [Markdown-First Protocol](../docs/markdown-first-protocol.md). This ensures output is parseable without imposing a syntactic burden on the LLM, keeping the system resilient and cloud-independent.
+
 ## Agent Types
 
 ### Content-Aware Agents

@@ -1,3 +1,5 @@
+// src/lib/db/AppDb.ts
+
 import Database, { Database as SQLiteDatabase } from 'better-sqlite3';
 
 export class AppDb {
@@ -5,7 +7,19 @@ export class AppDb {
 
   constructor(dbPath: string = 'data/app.db') {
     this.db = new Database(dbPath);
-    this.db.pragma('journal_mode = WAL'); // High performance for local writes
+    this.ensureSchema(); // Critical addition
+  }
+
+  private ensureSchema(): void {
+    this.db.exec(`
+CREATE TABLE IF NOT EXISTS projects_index (
+project_id TEXT PRIMARY KEY,
+name TEXT NOT NULL,
+last_known_path TEXT NOT NULL,
+last_opened_at DATETIME,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+`);
   }
 
   registerProject(id: string, name: string, path: string) {

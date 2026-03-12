@@ -84,6 +84,16 @@ New features must:
 3. Maintain offline functionality
 4. Never assume infinite resources
 
+## 8. Local-First Data Contract
+
+All machine-readable data contracts with probabilistic agents (LLMs) MUST follow the **Markdown-First Protocol**:
+
+- **Primary Output**: Agents must output using simple, tagged Markdown (e.g., `### KEY`).
+- **Parsing Responsibility**: Structured data (JSON, etc.) MUST be extracted by deterministic, local parsing utilities.
+- **Failure Containment**: Parse failures must only affect the rebuildable `agent.db` coordination layer, never corrupt the immutable `project.db`.
+
+**Rationale**: This prevents syntactic correctness from becoming a functional requirement that forces reliance on larger, cloud-based models, preserving the system's local-first and resource-aware properties.
+
 ## Enforcement
 
 These invariants are checked by:

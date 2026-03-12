@@ -1,3 +1,4 @@
+// src/lib/db/ProjectDb.ts
 import Database, { Database as SQLiteDatabase } from 'better-sqlite3';
 
 export interface FileVersion {
@@ -14,6 +15,36 @@ export class ProjectDb {
 
   constructor(projectDir: string) {
     this.db = new Database(`${projectDir}/project.db`);
+    this.ensureSchema(); // Critical addition
+  }
+
+  private ensureSchema(): void {
+    this.db.exec(`
+CREATE TABLE IF NOT EXISTS files (
+id INTEGER PRIMARY KEY,
+path TEXT UNIQUE NOT NULL,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS file_versions (
+id INTEGER PRIMARY KEY,
+file_id INTEGER NOT NULL,
+version_number INTEGER NOT NULL,
+content TEXT NOT NULL,
+save_type TEXT CHECK(save_type IN ('manual', 'autosave')),
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY(file_id) REFERENCES files(id),
+UNIQUE(file_id, version_number)
+);
+CREATE TABLE IF NOT EXISTS version_artifacts (
+id INTEGER PRIMARY KEY,
+file_version_id INTEGER NOT NULL,
+artifact_type TEXT NOT NULL,
+content TEXT NOT NULL,
+content_sha256 TEXT,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY(file_version_id) REFERENCES file_versions(id) ON DELETE CASCADE
+);
+`);
   }
 
   /**

@@ -13,6 +13,7 @@ build/
 .env
 .env.local
 .env.*.local
+.env.test
 
 # Database files (these are generated at runtime)
 data/

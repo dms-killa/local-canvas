@@ -48,6 +48,10 @@ npm run agent:diagnose # Full diagnostic
 - Add basic logging configuration
 - Create config validation (ensures settings respect invariants)
 
+### Completed Sub‑goals ✅
+- **Health‑monitor auto‑start**: `OllamaHealthMonitor` now auto‑starts periodic health checks on instantiation. Opt‑out via `OLLAMA_HEALTH_LOOP=false` for debugging.  
+
+
 ### Key Decisions
 - Shelving local resource management (Ollama is on separate LAN host)
 - Focus on network-aware task coordination instead
